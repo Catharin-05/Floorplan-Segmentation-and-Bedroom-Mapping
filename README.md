@@ -22,13 +22,13 @@ The dataset should be in COCO-like format with the following structure:
 Open train.ipynb.
 Make sure your dataset path is correct.
 Run the following code to train the model:
-
+```python
 # Import required libraries
 from mrcnn.config import Config
 from mrcnn import model as modellib, utils
 
 # Set up configuration
-```python
+
 class TrainConfig(Config):
     NAME = "object"
     GPU_COUNT = 1
