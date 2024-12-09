@@ -10,13 +10,13 @@ pip install tensorflow==2.9.1 keras opencv-python matplotlib scikit-image numpy
 Store your dataset in a folder named dataset/.
 The dataset should be in COCO-like format with the following structure:
 
-dataset/
-  train/
-    images/
-    annotations.json
-  val/
-    images/
-    annotations.json
+- dataset/
+  - train/
+    - images/
+    - annotations.json
+  - val/
+    - images/
+    - annotations.json
 
 ## 3. Training the Model
 Open train.ipynb.
