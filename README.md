@@ -18,12 +18,13 @@ The dataset should be in COCO-like format with the following structure:
     - images/
     - annotations.json
 
-## 3. Training the Model
+## **3. Training the Model**
 Open train.ipynb.
 Make sure your dataset path is correct.
 Run the following code to train the model:
+### Import required libraries
 ```python
-# Import required libraries
+
 from mrcnn.config import Config
 from mrcnn import model as modellib, utils
 
@@ -38,20 +39,20 @@ class TrainConfig(Config):
 
 config = TrainConfig()
 ```
-# Load the model for training
+### Load the model for training
 ```python
 model = modellib.MaskRCNN(mode="training", config=config, model_dir="./logs")
 ```
-# Path to pre-trained weights
+### Path to pre-trained weights
 ```python
 COCO_WEIGHTS_PATH = "./mask_rcnn_coco.h5"
 model.load_weights(COCO_WEIGHTS_PATH, by_name=True, exclude=["mrcnn_class_logits", "mrcnn_bbox_fc", "mrcnn_bbox", "mrcnn_mask"])
 ```
-# Train the model
+### Train the model
 ```python
 model.train(train_dataset, val_dataset, learning_rate=config.LEARNING_RATE, epochs=30, layers="all")
 ```
-## 4. Testing and Evaluating the Model
+## **4. Testing and Evaluating the Model**
 
 1. Open test.ipynb.
 2. Use the following code to load the trained model for inference:
@@ -99,11 +100,11 @@ r = results[0]
 
 visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], val_dataset.class_names, r['scores'])
 ```
-# 5. Logs and Weights
+5. Logs and Weights
 Trained weights are stored in the logs/ directory.
 The naming convention of weights is mask_rcnn_object_{epoch:04d}.h5.
 
-# 6. Results Visualization
+6. Results Visualization
 You can save the visualization results with the following code:
 ```python
 import os
@@ -119,6 +120,6 @@ for image_id in val_dataset.image_ids:
     file_path = os.path.join(output_dir, f"result_{image_id}.jpg")
     visualize.save_instances(image, r['rois'], r['masks'], r['class_ids'], val_dataset.class_names, r['scores'], file_path=file_path)
 ```
-# 7. Key Metrics
+7. Key Metrics
 Mean Average Precision (mAP): The model achieved a Mean Average Precision (mAP) of [Insert mAP value] at an IoU threshold of 0.5.
 
